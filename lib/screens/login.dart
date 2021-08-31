@@ -17,9 +17,12 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: 'logo',
+              child: Container(
+                height: 120.0,
+                child: Image.asset('images/logo.png'),
+              ),
             ),
             SizedBox(
               height: 48.0,
@@ -81,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Material(
                 color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
+                elevation: 2.0,
                 child: MaterialButton(
                   onPressed: () {
                     //Implement login functionality.
