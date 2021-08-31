@@ -1,7 +1,7 @@
 import 'package:bebual/screens/login.dart';
 import 'package:bebual/screens/registration.dart';
 import 'package:flutter/material.dart';
-import 'components/rounded_button.dart';
+import '../components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String welcomeScreen = 'welcome_screen';

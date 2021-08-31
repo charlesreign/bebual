@@ -1,5 +1,5 @@
 import 'package:bebual/constants.dart';
-import 'package:bebual/screens/components/rounded_button.dart';
+import '../components/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
