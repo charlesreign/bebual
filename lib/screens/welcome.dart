@@ -1,3 +1,5 @@
+import 'package:bebual/screens/login.dart';
+import 'package:bebual/screens/registration.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -45,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 borderRadius: BorderRadius.circular(15.0),
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to login screen.
+                    Navigator.pushNamed(context, LoginScreen.loginScreen);
                   },
                   minWidth: 200.0,
                   height: 42.0,
@@ -63,7 +65,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 2.0,
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to registration screen.
+                    Navigator.pushNamed(
+                        context, RegistrationScreen.registerScreen);
                   },
                   minWidth: 200.0,
                   height: 42.0,

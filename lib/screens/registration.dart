@@ -76,8 +76,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 color: Colors.blueAccent,
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
+                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                elevation: 2.0,
                 child: MaterialButton(
                   onPressed: () {
                     //Implement registration functionality.
