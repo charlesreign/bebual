@@ -3,6 +3,7 @@ import 'package:bebual/constants.dart';
 
 
 class ChatScreen extends StatefulWidget {
+  static const String chatScreen = 'chat_screen';
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }

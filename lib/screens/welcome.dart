@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static const String welcomeScreen = 'welcome_screen';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -25,7 +27,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Text(
                   'Bebual',
                   style: TextStyle(
-                    fontSize: 45.0,
+                    color: Colors.lightBlue,
+                    fontSize: 50.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -37,9 +40,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                elevation: 5.0,
+                elevation: 2.0,
                 color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(15.0),
                 child: MaterialButton(
                   onPressed: () {
                     //Go to login screen.
@@ -56,8 +59,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
+                borderRadius: BorderRadius.circular(15.0),
+                elevation: 2.0,
                 child: MaterialButton(
                   onPressed: () {
                     //Go to registration screen.
