@@ -2,9 +2,12 @@ import 'package:bebual/screens/chat.dart';
 import 'package:bebual/screens/login.dart';
 import 'package:bebual/screens/registration.dart';
 import 'package:bebual/screens/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-main(List<String> args) {
+main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(Bebual());
 }
 
@@ -21,7 +24,6 @@ class Bebual extends StatelessWidget {
         RegistrationScreen.registerScreen:(context)=>RegistrationScreen(),
         ChatScreen.chatScreen:(context)=>ChatScreen(),
       },
-      
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bebual/constants.dart';
 import '../components/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String loginScreen = 'login_screen';
@@ -9,6 +10,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +33,24 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldInput.copyWith(hintText: 'Enter your email')
-            ),
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {
+                  //Do something with the user input.
+                },
+                decoration:
+                    kTextFieldInput.copyWith(hintText: 'Enter your email')),
             SizedBox(
               height: 8.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldInput.copyWith(hintText: 'Enter your password')
-            ),
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  //Do something with the user input.
+                },
+                decoration:
+                    kTextFieldInput.copyWith(hintText: 'Enter your password')),
             SizedBox(
               height: 24.0,
             ),

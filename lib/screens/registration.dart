@@ -1,6 +1,8 @@
 import 'package:bebual/constants.dart';
+import 'package:bebual/screens/chat.dart';
 import '../components/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String registerScreen = 'register_screen';
@@ -9,6 +11,10 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,27 +36,42 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldInput.copyWith(hintText: 'Enter your email')
-            ),
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration:
+                    kTextFieldInput.copyWith(hintText: 'Enter your email')),
             SizedBox(
               height: 8.0,
             ),
             TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldInput.copyWith(hintText: 'Enter your password')
-            ),
+                obscureText: true,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  password = value;
+                },
+                decoration:
+                    kTextFieldInput.copyWith(hintText: 'Enter your password')),
             SizedBox(
               height: 24.0,
             ),
             RoundedButton(
               title: 'Register',
               colour: Colors.blueAccent,
-              onPressed: () {},
+              onPressed: () async {
+                //THIS CODE REGISTERS THE USER INTO THE FIREBASE DB
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, ChatScreen.chatScreen);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+              },
             )
           ],
         ),
