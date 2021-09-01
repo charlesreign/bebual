@@ -1,3 +1,5 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:bebual/constants.dart';
 import 'package:bebual/screens/login.dart';
 import 'package:bebual/screens/registration.dart';
 import 'package:flutter/material.dart';
@@ -49,22 +51,25 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    child: Image.asset('images/logo.png'),
-                    height: 50.0,
+                    child: Image.asset(
+                      'images/logo.png',
+                      width: 80.0,
+                    ),
+                    height: 120.0,
                   ),
                 ),
-                Text(
-                  'Bebual',
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
+                AnimatedTextKit(
+                  repeatForever: true,
+                  animatedTexts: [
+                    RotateAnimatedText('Bebual', textStyle: kAnimatedText),
+                    RotateAnimatedText('Fast', textStyle: kAnimatedText),
+                    RotateAnimatedText('Different', textStyle: kAnimatedText),
+                  ],
                 ),
               ],
             ),
             SizedBox(
-              height: 48.0,
+              height: 30.0,
             ),
             RoundedButton(
               title: 'Login',
@@ -73,7 +78,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Navigator.pushNamed(context, LoginScreen.loginScreen);
               },
             ),
-
             RoundedButton(
               title: 'Register',
               colour: Colors.blueAccent,
@@ -87,5 +91,3 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 }
-
-

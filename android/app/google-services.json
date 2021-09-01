@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "947703656554",
+    "project_id": "bebual-1a555",
+    "storage_bucket": "bebual-1a555.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947703656554:android:ad759d8ff9f600a2639a13",
+        "android_client_info": {
+          "package_name": "com.charliereign.bebual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947703656554-ro61djsc22d9jje9ncqq28ddl0j0juk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf5Skh395RZVflCKwzQFVvalO40VRx84Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947703656554-ro61djsc22d9jje9ncqq28ddl0j0juk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,7 +18,7 @@ const kMessageContainerDecoration = BoxDecoration(
   ),
 );
 
-const kTextFieldInput  = InputDecoration(
+const kTextFieldInput = InputDecoration(
   hintText: 'Enter your value.',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
@@ -32,4 +32,10 @@ const kTextFieldInput  = InputDecoration(
     borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
+);
+
+const kAnimatedText = TextStyle(
+  color: Colors.blueAccent,
+  fontSize: 35.0,
+  fontWeight: FontWeight.w900,
 );
