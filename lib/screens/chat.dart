@@ -4,6 +4,8 @@ import 'package:bebual/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _firestore = FirebaseFirestore.instance;
+final _auth = FirebaseAuth.instance;
+User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   static const String chatScreen = 'chat_screen';
@@ -12,8 +14,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final _auth = FirebaseAuth.instance;
-  User loggedInUser;
   String messageText;
   final messageTextController = TextEditingController();
 
@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
     Future<void> addMessage() {
       messageTextController.clear();
       return messages
-          .add({'text': messageText, 'sender': loggedInUser.email})
+          .add({'text': messageText, 'sender': loggedInUser.email, 'createdAt': FieldValue.serverTimestamp()})
           .then((value) => print('added message'))
           .catchError((onError) => print('fail to add message'));
     }
@@ -102,7 +102,7 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('messages').snapshots(),
+        stream: _firestore.collection('messages').orderBy('createdAt', descending: false).snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -113,12 +113,17 @@ class MessagesStream extends StatelessWidget {
           }
           return Expanded(
             child: ListView(
+              reverse: true,
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-              children: snapshot.data.docs.map((doc) {
+              children: snapshot.data.docs.reversed.map((doc) {
                 Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+                final curentUser = _auth.currentUser.email;
                 return ListTile(
                   title: MessageBubble(
-                      message: data['text'], sender: data['sender']),
+                    message: data['text'],
+                    sender: data['sender'],
+                    isMe: curentUser == data['sender'],
+                  ),
                 );
               }).toList(),
             ),
@@ -128,21 +133,30 @@ class MessagesStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.message, this.sender});
+  MessageBubble({this.message, this.sender, this.isMe});
   final String message;
   final String sender;
+  final bool isMe;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Material(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: isMe ? BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                bottomLeft: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0))
+                :BorderRadius.only(
+                topRight: Radius.circular(15.0),
+                bottomLeft: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0))
+                ,
             elevation: 3.0,
-            color: Colors.green[500],
+            color: isMe ? Colors.green[500] : Colors.lightBlue[600],
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(
@@ -153,10 +167,7 @@ class MessageBubble extends StatelessWidget {
           ),
           Text(
             sender,
-            style: TextStyle(
-              color: Colors.black54,
-              fontSize: 12.0
-            ),
+            style: TextStyle(color: Colors.black54, fontSize: 12.0),
           )
         ],
       ),
